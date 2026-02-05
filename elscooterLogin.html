@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VHDeS.se</title>
+    <link rel="stylesheet" href="elscooter.css">
 </head>
 
 <body>
-     
-    
-   
+
+
+
     <form id="myUser">
-        <label for="mail or username">Please enter your email or username:</label>  <!-- den här frågar om min user eller email -->
+        <label for="mail or username">Please enter your email or username:</label>
+        <!-- den här frågar om min user eller email -->
         <input type="text" id="mail or username" name="mail or username">
         <br>
         <label for="password">Password:</label><!-- Den här frågar för password -->
@@ -25,7 +27,7 @@
         const form = document.getElementById('myUser'); // Hämta formuläret med ID
 
         form.addEventListener('submit', function (event) { // Lägger till en händelselyssnare 
-            event.preventDefault(); 
+            event.preventDefault();
             const text = document.getElementById('mail or username').value; // Hämta värdet från användarnamn- eller email
             const password = document.getElementById('password').value; // Hämta värdet från lösenordet
 
