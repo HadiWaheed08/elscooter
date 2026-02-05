@@ -65,7 +65,7 @@
             utKr += 60;
             utText += 30;
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
-            if(utText<=180){
+            if(utText >=180){
                 alert("Du har nått max hyrestid på 180 minuter. Tack för att du hyrde vår elscooter!")
                 Hyr5minuter.disabled = true;
                 Hyr30minuter.disabled = true;
