@@ -10,51 +10,51 @@
 
     <h2 id="welcome"></h2>
 
-    <button id="Hyra"> <img src="" alt="">HyraElscooter</button>
-    <button id="Hyr5minuter" style="display: none;">Hyr5minuter</button>
-    <button id="Hyr30minuter" style="display: none;"> Hyr30minuter</button>
-    <p id="output"></p>
+    <button id="Hyra"> <img src="" alt="">HyraElscooter</button> 
+    <button id="Hyr5minuter" style="display: none;">Hyr5minuter</button> // knapp för att hyra i 5 minuter
+    <button id="Hyr30minuter" style="display: none;"> Hyr30minuter</button> // knapp för att hyra i 30 minuter
+    <p id="output"></p> // här visas totala tiden och kostnaden
     <script>
-        let utText = 0;
-        let utKr = 0;
+        let utText = 0; // total tid i minuter
+        let utKr = 0; // total kostnad i kronor
 
-        const urlParams = new URLSearchParams(window.location.search);
-        const username = urlParams.get('username');
-        document.getElementById('welcome').innerText = `Welcome, ${username}!`;
+        const urlParams = new URLSearchParams(window.location.search); // Hämtar URL-parametrar
+        const username = urlParams.get('username'); // Hämtar användarnamnet från URL-parametrarna
+        document.getElementById('welcome').innerText = `Welcome, ${username}!`; // Visar välkomstmeddelande med användarnamnet
 
 
 
         
-        const Hyra = document.getElementById('Hyra');
-        const Hyr5minuter = document.getElementById('Hyr5minuter');
-        const Hyr30minuter = document.getElementById('Hyr30minuter');
-        const text = document.getElementById('output');
+        const Hyra = document.getElementById('Hyra'); // knapp för att hyra elscooter
+        const Hyr5minuter = document.getElementById('Hyr5minuter'); // knapp för att hyra i 5 minuter
+        const Hyr30minuter = document.getElementById('Hyr30minuter'); // knapp för att hyra i 30 minuter
+        const text = document.getElementById('output'); // element för att visa total tid och kostnad
 
-        if (!username) {
-            window.location.href = 'elscooterLogin.html';
+        if (!username) { 
+            window.location.href = 'elscooterLogin.html'; // Om inget användarnamn finns skickas man till inloggningssidan
         }
         else {
             document.getElementById('Hyra').addEventListener('click', function () {
-                alert('Du har hyrt en elscooter.Tryck igen för att bestämma hur länge du vill hyra scootern!');
+                alert('Du har hyrt en elscooter.Tryck igen för att bestämma hur länge du vill hyra scootern!'); // Meddelande när användaren klickar på "HyraElscooter"-knappen
 
                 Hyra.style.display = 'none';
-                Hyr5minuter.style.display = 'block';
-                Hyr30minuter.style.display = 'block';
-
+                Hyr5minuter.style.display = 'block'; // visa knappen för att hyra i 5 minuter
+                Hyr30minuter.style.display = 'block'; // visa knappen för att hyra i 30 minuter
+   
             });
 
-            document.getElementById('welcome').textContent = `Welcome, ${username}!`;
+            document.getElementById('welcome').textContent = `Welcome, ${username}!`; // Visar välkommen med användarnamnet
         }
-        document.getElementById('Hyr5minuter').addEventListener('click', function () {
+        document.getElementById('Hyr5minuter').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
             utKr += 10;
             utText += 5;
-            text.textContent = utText + " minuter = " + utKr + " kr ";
+            text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
         });
 
-        document.getElementById('Hyr30minuter').addEventListener('click', function () {
+        document.getElementById('Hyr30minuter').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr30minuter"
             utKr += 60;
             utText += 30;
-            text.textContent = utText + " minuter = " + utKr + " kr ";
+            text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
 
         });
 
