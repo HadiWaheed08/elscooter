@@ -12,11 +12,11 @@
     <h2 id="welcome"></h2>
 
     <button id="Hyra"> <img src="" alt="">HyraElscooter</button>
-    <button id="Hyr5minuter" style="display: none;">Hyr5minuter</button> <!-- knapp för att hyra i 5 minuter -->
-    <button id="Hyr30minuter" style="display: none;"> Hyr30minuter</button> <!-- knapp för att hyra i 30 minuter--> 
+    <button id="Hyr1timma" style="display: none;">Hyr 1 timma</button> <!-- knapp för att hyra i 5 minuter -->
+    <button id="Hyr30minuter" style="display: none;"> Hyr 30 minuter</button> <!-- knapp för att hyra i 30 minuter--> 
     <p id="output"></p> <!--här visas totala tiden och kostnaden-->
     <script>
-        let utText = 0; // total tid i minuter
+        let utText = 0; // total tid i minuter/timmar
         let utKr = 0; // total kostnad i kronor
         
 
@@ -26,7 +26,7 @@
 
 
         const Hyra = document.getElementById('Hyra'); // knapp för att hyra elscooter
-        const Hyr5minuter = document.getElementById('Hyr5minuter'); // knapp för att hyra i 5 minuter
+        const Hyr1timma = document.getElementById('Hyr1timma'); // knapp för att hyra i 5 minuter
         const Hyr30minuter = document.getElementById('Hyr30minuter'); // knapp för att hyra i 30 minuter
         const text = document.getElementById('output'); // element för att visa total tid och kostnad
 
@@ -35,28 +35,27 @@
         }
         else {
             document.getElementById('Hyra').addEventListener('click', function () {
-                alert('Du har hyrt en elscooter.Tryck igen för att bestämma hur länge du vill hyra scootern!'); // Meddelande när användaren klickar på "HyraElscooter"-knappen
-
                 Hyra.style.display = 'none';
-                Hyr5minuter.style.display = 'block'; // visa knappen för att hyra i 5 minuter
+                Hyr1timma.style.display = 'block'; // visa knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'block'; // visa knappen för att hyra i 30 minuter
 
             });
 
             document.getElementById('welcome').textContent = `Welcome, ${username}!`; // Visar välkommen med användarnamnet
         }
-        document.getElementById('Hyr5minuter').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
-            utKr += 10;
-            utText += 5;
+        document.getElementById('Hyr1timma').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
+            utKr += 120;
+            utText += 60;
+            
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
 
-            if(utText >=180){ // Om total tid är 180 minuter eller mer
-                alert("Du har nått max hyrestid på 180 minuter. Tack för att du hyrde vår elscooter!");
-                Hyr5minuter.disabled = true;
+            if(utText >=300){ // Om total tid är 300 minuter eller mer
+                alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen efter 5 timmar!");
+                Hyr1timma.disabled = true;
                 Hyr30minuter.disabled = true;
             }
             else{
-                Hyr5minuter.disabled = false;
+                Hyr1timma.disabled = false;
                 Hyr30minuter.disabled = false;
             }
         });
@@ -65,13 +64,13 @@
             utKr += 60;
             utText += 30;
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
-            if(utText >=180){
-                alert("Du har nått max hyrestid på 180 minuter. Tack för att du hyrde vår elscooter!")
-                Hyr5minuter.disabled = true;
+            if(utText >=300){
+                alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen after 5 timmar!")
+                Hyr1timma.disabled = true;
                 Hyr30minuter.disabled = true;
             }
             else{
-                Hyr5minuter.disabled = false;
+                Hyr1timma.disabled = false;
                 Hyr30minuter.disabled = false;
             }
             
