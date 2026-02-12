@@ -34,7 +34,8 @@
 
             console.log(text + password); // Logga inmatade värden för felsökning
 
-            if (text == "Hadi.Waheed08" && password == "Wow1234") {// Kontrollera om värden matchar
+            if (text == "Hadi.Waheed08" && password == "Wow1234") { // Kontrollera om värden matchar
+                localStorage.setItem("activeUser", username);
                 username = text; // Spara användarnamnet i variabeln
 
                 window.location.href = `elscooterHyra.html?username=${encodeURIComponent(username)}`;// skickar till elscooterHyra.html med användarnamnet 

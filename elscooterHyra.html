@@ -10,15 +10,21 @@
 <body>
 
     <h2 id="welcome"></h2>
+    <div id="status">Status: Ingen aktiv hyra</div>
+
+    <h3>Hyreshistorik</h3>
+    <div id="history"></div>
+
 
     <button id="Hyra">HyraElscooter</button>
     <button id="Hyr1timma" style="display: none;">Hyr 1 timma</button> <!-- knapp för att hyra i 5 minuter -->
-    <button id="Hyr30minuter" style="display: none;"> Hyr 30 minuter</button> <!-- knapp för att hyra i 30 minuter--> 
+    <button id="Hyr30minuter" style="display: none;"> Hyr 30 minuter</button> <!-- knapp för att hyra i 30 minuter-->
     <p id="output"></p> <!--här visas totala tiden och kostnaden-->
     <script>
         let utText = 0; // total tid i minuter/timmar
         let utKr = 0; // total kostnad i kronor
-        
+        let aktivHyra = false;
+        let startTid = null;
 
         const urlParams = new URLSearchParams(window.location.search); // Hämtar URL-parametrar
         const username = urlParams.get('username'); // Hämtar användarnamnet från URL-parametrarna
@@ -35,6 +41,17 @@
         }
         else {
             document.getElementById('Hyra').addEventListener('click', function () {
+
+                if (aktivHyra) {
+                    alert("Du hyr redan en elscooter!");
+                    return;
+                }
+
+                aktivHyra = true;
+                startTid = new Date().toLocaleString();
+
+                document.body.classList.add("hyr-aktiv");
+                document.getElementById("status").innerText = "Status: Scooter hyrd "; 
                 Hyra.style.display = 'none';
                 Hyr1timma.style.display = 'block'; // visa knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'block'; // visa knappen för att hyra i 30 minuter
@@ -46,15 +63,15 @@
         document.getElementById('Hyr1timma').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
             utKr += 120;
             utText += 60;
-            
+
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
 
-            if(utText >=300){ // Om total tid är 300 minuter eller mer
+            if (utText >= 300) { // Om total tid är 300 minuter eller mer
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen efter 5 timmar!");
                 Hyr1timma.disabled = true;
                 Hyr30minuter.disabled = true;
             }
-            else{
+            else {
                 Hyr1timma.disabled = false;
                 Hyr30minuter.disabled = false;
             }
@@ -64,16 +81,16 @@
             utKr += 60;
             utText += 30;
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
-            if(utText >=300){
+            if (utText >= 300) {
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen after 5 timmar!")
                 Hyr1timma.disabled = true;
                 Hyr30minuter.disabled = true;
             }
-            else{
+            else {
                 Hyr1timma.disabled = false;
                 Hyr30minuter.disabled = false;
             }
-            
+
 
         });
 
