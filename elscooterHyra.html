@@ -86,7 +86,7 @@
             utKr += 60; // skriver ut 60 kr per click
             utText += 30;// skriver ut 30 minuter per click
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad
-            if (utText >= 300) {
+            if (utText >= 300) {// Om total tid är 300 minuter eller mer
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen after 5 timmar!")
                 Hyr1timma.disabled = true;// gör så att knappen slutar funka
                 Hyr30minuter.disabled = true;// gör så att knappen slutar funka
