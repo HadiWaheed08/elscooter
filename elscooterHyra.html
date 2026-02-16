@@ -64,7 +64,7 @@
             document.getElementById('welcome').textContent = `Welcome, ${username}!`; // Visar välkommen med användarnamnet
         }
         document.getElementById('Hyr1timma').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
-            utKr += 120;// skriver ut 120 minuter per click
+            utKr += 120;// skriver ut 120 kr per click
             utText += 60;// skriver ut 60 minuter per click
 
             text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
@@ -73,12 +73,12 @@
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen efter 5 timmar!");
                 Hyr1timma.disabled = true;// gör så att knappen slutar funka
                 Hyr30minuter.disabled = true;// gör så att knappen slutar funka
-                 Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
+                Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'none'; // gömmer knappen för att hyra i 30 minuter
             }
             else {
-                Hyr1timma.disabled = false;
-                Hyr30minuter.disabled = false;
+                Hyr1timma.disabled = false;// gör så att knappen förtsätter funka
+                Hyr30minuter.disabled = false;// gör så att knappen förtsätter funka
             }
         });
 
@@ -101,7 +101,7 @@
 
         });
 
-        document.getElementById('Avsluta').addEventListener('click', function () {
+        document.getElementById('Avsluta').addEventListener('click', function () {// Händelselyssnare för knappen "avsluta"
             if(utText >0) { // om texten är större än 0
                 alert("Är säker du vill avsluta?")
               Hyr1timma.disabled = true;// gör så att knappen slutar funka
