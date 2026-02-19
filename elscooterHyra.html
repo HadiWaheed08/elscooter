@@ -13,7 +13,7 @@
     <div id="status">Status: Ingen aktiv hyra</div>
 
     <h3>Hyres historik</h3>
-    <div id="history"></div>
+    
 
 
     <button id="Hyra">HyraElscooter</button>
@@ -21,6 +21,7 @@
     <button id="Hyr30minuter" style="display: none;"> Hyr 30 minuter</button> <!-- knapp för att hyra i 30 minuter-->
     <button id="Avsluta" style="display: none;">Avsluta</button><!-- knapp för att avsluta hyr-->
     <p id="output"></p> <!--här visas totala tiden och kostnaden-->
+    <p id="history"></p>
     <script>
         let utText = 0; // total tid i minuter/timmar
         let utKr = 0; // total kostnad i kronor
@@ -36,6 +37,10 @@
         const Hyr1timma = document.getElementById('Hyr1timma'); // knapp för att hyra i 5 minuter
         const Hyr30minuter = document.getElementById('Hyr30minuter'); // knapp för att hyra i 30 minuter
         const text = document.getElementById('output'); // element för att visa total tid och kostnad
+        const tid =  new Date().toLocaleString();
+        const date =  new Date().toLocaleString();
+        const history = document.getElementById('history'); 
+
 
         if (!username) {
             window.location.href = 'elscooterLogin.html'; // Om inget användarnamn finns skickas man till inloggningssidan
@@ -66,8 +71,7 @@
         document.getElementById('Hyr1timma').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
             utKr += 120;// skriver ut 120 kr per click
             utText += 60;// skriver ut 60 minuter per click
-
-            text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
+           text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
 
             if (utText >= 300) { // Om total tid är 300 minuter eller mer
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen efter 5 timmar!");
@@ -109,6 +113,7 @@
                  Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'none'; // gömmer knappen för att hyra i 30 minuter
                 Avsluta.style.display ='none';//gömmer knappen för att hyra i 30 minuter
+                history.textContent = `Hyres datum och tid: ${date}`;
             }
             else{
                 Hyr1timma.disabled = false;// gör så att knappen fortsätter funka
