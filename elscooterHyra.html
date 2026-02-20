@@ -13,7 +13,7 @@
     <div id="status">Status: Ingen aktiv hyra</div>
 
     <h3>Hyres historik</h3>
-    
+
 
 
     <button id="Hyra">HyraElscooter</button>
@@ -37,9 +37,9 @@
         const Hyr1timma = document.getElementById('Hyr1timma'); // knapp för att hyra i 5 minuter
         const Hyr30minuter = document.getElementById('Hyr30minuter'); // knapp för att hyra i 30 minuter
         const text = document.getElementById('output'); // element för att visa total tid och kostnad
-        const tid =  new Date().toLocaleString();
-        const date =  new Date().toLocaleString();
-        const history = document.getElementById('history'); 
+        const tid = new Date().toLocaleString();
+        const date = new Date().toLocaleString();
+        const history = document.getElementById('history');
 
 
         if (!username) {
@@ -57,9 +57,9 @@
                 startTid = new Date().toLocaleString();
 
                 document.body.classList.add("hyr-aktiv");
-                document.getElementById("status").innerText = "Status: Scooter hyrd"; 
+                document.getElementById("status").innerText = "Status: Scooter hyrd";
                 Hyra.style.display = 'none';
-                Avsluta.style.display ='block';
+                Avsluta.style.display = 'block';
                 Hyr1timma.style.display = 'block'; // visa knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'block'; // visa knappen för att hyra i 30 minuter
 
@@ -71,7 +71,7 @@
         document.getElementById('Hyr1timma').addEventListener('click', function () { // Händelselyssnare för knappen "Hyr5minuter"
             utKr += 120;// skriver ut 120 kr per click
             utText += 60;// skriver ut 60 minuter per click
-           text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
+            text.textContent = utText + " minuter = " + utKr + " kr "; // Uppdaterar och visar total tid och kostnad¨
 
             if (utText >= 300) { // Om total tid är 300 minuter eller mer
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen efter 5 timmar!");
@@ -79,6 +79,8 @@
                 Hyr30minuter.disabled = true;// gör så att knappen slutar funka
                 Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'none'; // gömmer knappen för att hyra i 30 minuter
+                Avsluta.style.display = 'none';//gömmer knappen för att avsluta
+                history.textContent = `Hyres datum och tid: ${date}`; // Visar datum
             }
             else {
                 Hyr1timma.disabled = false;// gör så att knappen förtsätter funka
@@ -94,8 +96,10 @@
                 alert("Du har nått max hyrestid på 5 timmar. Tack för att du hyrde vår elscooter. Du kan hyra igen after 5 timmar!")
                 Hyr1timma.disabled = true;// gör så att knappen slutar funka
                 Hyr30minuter.disabled = true;// gör så att knappen slutar funka
-                 Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
+                Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'none'; // gömmer knappen för att hyra i 30 minuter
+                Avsluta.style.display = 'none';//gömmer knappen för att avsluta
+                history.textContent = `Hyres datum och tid: ${date}`; // Visar datum
             }
             else {
                 Hyr1timma.disabled = false;// gör så att knappen förtsätter funka
@@ -106,21 +110,31 @@
         });
 
         document.getElementById('Avsluta').addEventListener('click', function () {// Händelselyssnare för knappen "avsluta"
-            if(utText >0) { // om texten är större än 0
-                alert("Är säker du vill avsluta?") 
-              Hyr1timma.disabled = true;// gör så att knappen slutar funka
+            if (utText >= 0) { // om texten är större än 0
+                alert("Är säker du vill avsluta?")
+                Hyr1timma.disabled = true;// gör så att knappen slutar funka
                 Hyr30minuter.disabled = true;// gör så att knappen slutar funka
-                 Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
+                Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
                 Hyr30minuter.style.display = 'none'; // gömmer knappen för att hyra i 30 minuter
-                Avsluta.style.display ='none';//gömmer knappen för att hyra i 30 minuter
-                history.textContent = `Hyres datum och tid: ${date}`;
+                Avsluta.style.display = 'none';//gömmer knappen för att avsluta
+                history.textContent = `Hyres datum och tid: ${date}`; // Visar datum
+
             }
-            else{
+            else if (utText >= 300) {
+                Avsluta.style.display = 'none'; //gör knappen osynligt
+                Hyr1timma.disabled = true;// gör så att knappen slutar funka
+                Hyr30minuter.disabled = true;// gör så att knappen slutar funka
+                Hyr1timma.style.display = 'none'; // gömmer knappen för att hyra i 5 minuter
+                Hyr30minuter.style.display = 'none'; // gömmer knappen för att avsluta
+                history.textContent = `Hyres datum och tid: ${date}`; // Visar datum
+
+            }
+            else {
                 Hyr1timma.disabled = false;// gör så att knappen fortsätter funka
                 Hyr30minuter.disabled = false;// gör så att knappen fortsätter funka
-               
+
             }
-           
+
 
         })
 
